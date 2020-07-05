@@ -17,13 +17,20 @@
  * Define Global Variables
  * 
 */
+let navBar = document.querySelector(".navbar__menu")
 let navBarList = document.querySelector("#navbar__list");
 const sections = document.querySelectorAll("section");
 /**
  * End Global Variables
- * Start Helper Functions
  * 
 */
+
+/**
+ * Begin Main Functions
+ * 
+*/
+
+// build the nav
 function populateNavBar(){
     const myDocFrag = document.createDocumentFragment();
 
@@ -40,25 +47,21 @@ function populateNavBar(){
     }
     navBarList.appendChild(myDocFrag);
     updateNavBar(sections[0]);
-}
-//es ist nicht ganz klar wie man scrollen soll -> event listener für anchor? -> default behavior unterdrücken? -> id von anchor nehmen und mit $('#id').ScrollTo(); hinscrollen
-function scrollToPosition(event){
-    event.preventDefault();
-    const element = document.querySelector(event.target.getAttribute("href"));
-    element.scrollIntoView({behavior: "smooth"});
-}
 
-function addScrollListener(tolookfor){
+    //event listener for hiding / showing navBar
     window.addEventListener('scroll', function() {
-        var element = tolookfor;
-        var position = element.getBoundingClientRect();
-        if(position.top >= 0 && position.top < 400) {
-            updateNavBar(element);
+        this.clearTimeout();
+        if(navBar.style.display === "none"){
+            navBar.style.display = "block";
         }
+        this.setTimeout(function(){
+            navBar.style.display = "none";
+        }, 4000)
     });
 }
 
 
+// Mark section as active  when near top of viewport
 function updateNavBar(target){
     const navBarItems = navBarList.querySelectorAll("li");
     for(navItem of navBarItems){
@@ -73,35 +76,24 @@ function updateNavBar(target){
     }
 }
 
+function addScrollListener(tolookfor){
+    window.addEventListener('scroll', function() {
+        var element = tolookfor;
+        var position = element.getBoundingClientRect();
+        if(position.top >= 0 && position.top < 400) {
+            updateNavBar(element);
+        }
+    });
+}
+
+// Scroll to anchor ID using scrollTO event
+function scrollToPosition(event){
+    event.preventDefault();
+    const element = document.querySelector(event.target.getAttribute("href"));
+    element.scrollIntoView({behavior: "smooth"});
+}
 
 populateNavBar();
 
-
-/**
- * End Helper Functions
- * Begin Main Functions
- * 
-*/
-
-// build the nav
-
-
-// Add class 'active' to section when near top of viewport
-
-
-// Scroll to anchor ID using scrollTO event
-
-
-/**
- * End Main Functions
- * Begin Events
- * 
-*/
-
-// Build menu 
-
-// Scroll to section on link click
-
-// Set sections as active
 
 
