@@ -20,6 +20,7 @@
 let navBar = document.querySelector(".navbar__menu")
 let navBarList = document.querySelector("#navbar__list");
 const sections = document.querySelectorAll("section");
+let timeoutHandle = null;
 /**
  * End Global Variables
  * 
@@ -52,12 +53,17 @@ function populateNavBar(){
 
     //event listener for hiding / showing navBar
     window.addEventListener('scroll', function() {
-        this.clearTimeout();
+        
         if(navBar.style.display === "none"){
             navBar.style.display = "block";
         }
-        this.setTimeout(function(){
+        if(timeoutHandle){
+            clearTimeout(timeoutHandle);
+            timeoutHandle = null;
+        }
+        timeoutHandle = setTimeout(function(){
             navBar.style.display = "none";
+            console.log("deons work")
         }, 4000)
     });
 }
