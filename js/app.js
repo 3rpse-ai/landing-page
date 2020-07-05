@@ -34,6 +34,7 @@ const sections = document.querySelectorAll("section");
 function populateNavBar(){
     const myDocFrag = document.createDocumentFragment();
 
+    //bulding the navBarItems based on the sections
     for (section of sections){
         const listItem = document.createElement("li");
         const link = document.createElement("a");
@@ -45,6 +46,7 @@ function populateNavBar(){
         myDocFrag.appendChild(listItem);
         addScrollListener(section);
     }
+    //adding the navBar Items to the Document 
     navBarList.appendChild(myDocFrag);
     updateNavBar(sections[0]);
 
