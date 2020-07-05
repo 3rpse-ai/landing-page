@@ -65,13 +65,19 @@ section {
 
 /* Navigation Styles*/
 .navbar__menu ul {
+    display: flex;
+    justify-content: space-evenly;
     padding-left: 0;
     margin: 0;
-    text-align: right;
+    float: none;
+    font-family: 'Oxygen', Sans-Serif;
 }
 
 .navbar__menu li {
+    flex: 1;
+    text-align: center;
     display: inline-block;
+    
 }
 
 .navbar__menu .menu__link {
@@ -86,6 +92,14 @@ section {
     background: #333;
     color: #fff;
     transition: ease 0.3s all;
+}
+
+.menu__link__selected {
+    display: block;
+    padding: 1em;
+    font-weight: bold;
+    text-decoration: none;
+    color: royalblue;
 }
 
 /* Header Styles */
